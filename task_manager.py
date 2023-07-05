@@ -259,14 +259,8 @@ def gen_report(gr):
         if task['completed'] == False and new_task_date<curr_date: #checks if task is overdue and incomplete
             overdue_and_incomplete+=1
     #calculates percentages   
-    while True:
-        try:     
-            incomplete_per = (uncompleted/num_tasks)*100
-            overdue_per = (overdue/num_tasks)*100
-        except ValueError:
-            print("No tasks available")
-            break
-
+    incomplete_per = (uncompleted/num_tasks)*100
+    overdue_per = (overdue/num_tasks)*100
     #Adds data to file and returns data in user friendly way. 
     with open('task_overview.txt', 'w') as user_file:
         user_file.write("\nThe total tasks are: " + str(num_tasks))
@@ -306,15 +300,10 @@ def gen_report(gr):
             if task['completed'] == False and new_date<curr_date:
                 user_incomplete_overdue+=1 #how many user tasks are overdue and incomplete
     #calculates percentages
-    while True:
-        try:
-            user_per = (user_total/task_total)*100
-            complete_user_per = (user_completed/user_total)*100
-            incomplete_user_per = (user_incomplete/user_total)*100
-            user_incomplete_overdue_per = (user_incomplete_overdue/user_total)*100
-        except ValueError:
-            print("User has no tasks assigned.")
-            break
+    user_per = (user_total/task_total)*100
+    complete_user_per = (user_completed/user_total)*100
+    incomplete_user_per = (user_incomplete/user_total)*100
+    user_incomplete_overdue_per = (user_incomplete_overdue/user_total)*100
     with open('user_overview.txt', 'w') as user_file: #writes data to file and returns output to user
         user_file.write("The total tasks are: " + str(task_total))
         user_file.write("\n\n\nThe total number of users are: "+ str(total_users))
